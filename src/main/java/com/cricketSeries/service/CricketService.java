@@ -9,6 +9,7 @@ import com.cricketSeries.dao.MatchDAO;
 import com.cricketSeries.dao.SeriesDAO;
 import com.cricketSeries.dto.MatchDTO;
 import com.cricketSeries.dto.SeriesRequestDTO;
+import com.cricketSeries.dto.SeriesResponseDTO;
 import com.cricketSeries.model.Match;
 import com.cricketSeries.model.Series;
 
@@ -17,21 +18,24 @@ public class CricketService {
 
 	@Autowired
 	private SeriesDAO seriesDao;
+	
+	@Autowired
 	private MatchDAO matchDao;
 
 	public void createSeries(SeriesRequestDTO series) {
-		Long id = seriesDao.insertSeries(series);
+		long id = seriesDao.insertSeries(series);
 
-//        for (Match m : series.getMatches()) {
-//            dao.insertMatch(id, m);
-//        }
+		for (MatchDTO m : series.getMatches()) {
+			matchDao.insertMatch(Long.parseLong(String.valueOf(id)), m);
+		}
+
 	}
 
 	public List<Series> getAllSeries() {
 		return seriesDao.getAllSeries();
 	}
 
-	public Series getSeriesById(Long id) {
+	public SeriesResponseDTO getSeriesById(Long id) {
 		return seriesDao.getSeriesById(id);
 	}
 
@@ -44,14 +48,14 @@ public class CricketService {
 	}
 
 	public void createMatch(Long seriesId, MatchDTO match) {
-		matchDao.insertMatch(seriesId, match);
+		int id = matchDao.insertMatch(seriesId, match);
 	}
 
-	public List<Match> getAllMatchesBySeriesId(Long id) {
+	public List<MatchDTO> getAllMatchesBySeriesId(Long id) {
 		return matchDao.getAllMatchesBySeriesId(id);
 	}
 
-	public Match getMatchById(Long id) {
+	public MatchDTO getMatchById(Long id) {
 		return matchDao.getMatchById(id);
 	}
 
@@ -59,7 +63,7 @@ public class CricketService {
 		matchDao.deleteMatch(id);
 	}
 
-	public void updateMatch(Match match) {
-		matchDao.updateMatch(match);
+	public void updateMatch(Long id, MatchDTO match) {
+		matchDao.updateMatch(id, match);
 	}
 }
