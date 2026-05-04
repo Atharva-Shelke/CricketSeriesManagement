@@ -12,7 +12,7 @@ public class SeriesResponseDTO {
 	private LocalDate startDate;
 	private LocalDate endDate;
 
-	private List<MatchDTO> matches;
+	private List<MatchResponseDTO> matches;
 
 	public Long getId() {
 		return id;
@@ -54,11 +54,11 @@ public class SeriesResponseDTO {
 		this.endDate = endDate;
 	}
 
-	public List<MatchDTO> getMatches() {
+	public List<MatchResponseDTO> getMatches() {
 		return matches;
 	}
 
-	public void setMatches(List<MatchDTO> matches) {
+	public void setMatches(List<MatchResponseDTO> matches) {
 		this.matches = matches;
 	}
 

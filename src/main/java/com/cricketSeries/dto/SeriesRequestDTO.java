@@ -5,50 +5,50 @@ import java.util.List;
 
 public class SeriesRequestDTO {
 
-    private String name;
-    private String location;
-    private LocalDate startDate;
-    private LocalDate endDate;
+	private String name;
+	private String location;
+	private LocalDate startDate;
+	private LocalDate endDate;
 
-    private List<MatchDTO> matches;
+	private List<MatchRequestDTO> matches;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getLocation() {
-        return location;
-    }
+	public String getLocation() {
+		return location;
+	}
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+	public LocalDate getStartDate() {
+		return startDate;
+	}
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+	public LocalDate getEndDate() {
+		return endDate;
+	}
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
 
-    public List<MatchDTO> getMatches() {
-        return matches;
-    }
+	public List<MatchRequestDTO> getMatches() {
+		return matches;
+	}
 
-    public void setMatches(List<MatchDTO> matches) {
-        this.matches = matches;
-    }
+	public void setMatches(List<MatchRequestDTO> matches) {
+		this.matches = matches;
+	}
 }
