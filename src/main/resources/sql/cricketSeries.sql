@@ -5,8 +5,26 @@ VALUES (:name, :location, :startDate, :endDate);
 -- name: get_all_series
 SELECT id, name, location, start_date, end_date FROM series;
 
+-- name: get_all_series_with_matches
+SELECT s.id, s.name, s.location, s.start_date, s.end_date, (
+	SELECT JSON_AGG(
+		JSON_BUILD_OBJECT(
+			'id',id, 'teamA',team_a, 'teamB',team_b, 'matchDate',match_date, 'venue',venue, 'matchType',match_type
+		) ORDER BY m.match_date 
+	) FROM match m where series_id = s.id
+) as matches FROM series s;
+
 -- name: get_series_by_id
 SELECT id, name, location, start_date, end_date FROM series WHERE id = :id;
+
+-- name: get_series_by_id_with_matches
+SELECT s.id, s.name, s.location, s.start_date, s.end_date, (
+	SELECT JSON_AGG(
+		JSON_BUILD_OBJECT(
+			'id',id, 'teamA',team_a, 'teamB',team_b, 'matchDate',match_date, 'venue',venue, 'matchType',match_type
+		) ORDER BY m.match_date 
+	) FROM match m where series_id = s.id
+) as matches FROM series s WHERE s.id = :id;
 
 -- name: delete_series
 DELETE FROM series WHERE id = :id;
