@@ -18,20 +18,22 @@ public class SqlLoader {
 	}
 
 	private void loadSql(String path) throws IOException {
-		InputStream is = new ClassPathResource(path).getInputStream();
-		String content = new String(is.readAllBytes());
+		try (InputStream is = new ClassPathResource(path).getInputStream()) {
+			String content = new String(is.readAllBytes());
 
-		String[] parts = content.split("-- name:");
-		for (String part : parts) {
-			if (part.trim().isEmpty())
-				continue;
+			String[] parts = content.split("-- name:");
+			for (String part : parts) {
+				if (part.trim().isEmpty())
+					continue;
 
-			String[] lines = part.split("\n", 2);
-			String name = lines[0].trim();
-			String query = lines[1].trim();
+				String[] lines = part.split("\n", 2);
+				String name = lines[0].trim();
+				String query = lines[1].trim();
 
-			queries.put(name, query);
+				queries.put(name, query);
+			}
 		}
+
 	}
 
 	public String get(String name) {
