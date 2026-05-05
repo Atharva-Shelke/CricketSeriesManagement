@@ -12,8 +12,6 @@ public class Match {
 	private String venue;
 	private String matchType;
 
-	private Long seriesId;
-
 	public Long getId() {
 		return id;
 	}
@@ -60,14 +58,6 @@ public class Match {
 
 	public void setMatchType(String matchType) {
 		this.matchType = matchType;
-	}
-
-	public Long getSeriesId() {
-		return seriesId;
-	}
-
-	public void setSeriesId(Long seriesId) {
-		this.seriesId = seriesId;
 	}
 
 }
